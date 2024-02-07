@@ -11,10 +11,10 @@ public class Planes : MonoBehaviour
     [SerializeField] private SaveColor saveColor;
     [SerializeField] private Mesh[] meshPlanes;
     [SerializeField] private MeshFilter meshFilter;
+
     public MeshRenderer meshRenderer;
 
-    public int numberPlace = 0;//номерной знак коробл€
-
+    public int numberPlace = 0;//Ќомерной знак коробл€
 
     public void NextPlane()
     {

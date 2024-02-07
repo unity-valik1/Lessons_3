@@ -8,7 +8,7 @@ public class SaveColor : MonoBehaviour
     [SerializeField] private Planes planes;
     [SerializeField] private ColorPlane colorPlane;
 
-    private int color;//цвет коробля
+    private int color;//Цвет коробля
 
     private void Start()
     {

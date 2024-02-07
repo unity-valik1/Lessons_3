@@ -5,42 +5,39 @@ using UnityEngine;
 
 public class PlaneController : MonoBehaviour, IPlaneItemActions
 {
-    private Vector2 touchStartPos; // Начальная позиция касания.
-    private Quaternion startRotation; // Стартовая позиция.
+    private Vector2 touchStartPos; //Начальная позиция касания
 
-    private Vector3 mouseStartPos;
-    private Vector3 mouseEndPos;
+    private Vector3 mouseStartPos;//Начальная позиция
+    private Vector3 mouseEndPos;//Конечная позиция
 
-    public float rotationSpeed = 2.0f; // Скорость вращения объекта.
+    private Quaternion startRotation;//Стартовая позиция
+
+    public float rotationSpeed = 2.0f;//Скорость вращения объекта
+
     private void Start()
     {
         startRotation = transform.rotation;
     }
     public void OnDrag(Vector3 pos)
     {
-        // Проверяем, есть ли касания на экране.
+        //Проверяем, есть ли касания на экране
         if (Input.touchCount > 0)
         {
-            // Получаем первое касание.
-            Touch touch = Input.GetTouch(0);
+            Touch touch = Input.GetTouch(0);//Получаем первое касание
 
-            // Проверяем состояние касания.
+            //Проверяем состояние касания
             if (touch.phase == TouchPhase.Began)
             {
-                // Запоминаем начальную позицию касания.
-                touchStartPos = touch.position;
+                touchStartPos = touch.position;//Запоминаем начальную позицию касания
             }
             else if (touch.phase == TouchPhase.Moved)
             {
-                // Вычисляем разницу между текущей и начальной позицией касания.
-                Vector2 touchDelta = touch.position - touchStartPos;
+                Vector2 touchDelta = touch.position - touchStartPos;//Вычисляем разницу между текущей и начальной позицией касания
 
-                // Изменяем поворот объекта по оси Y на основе движения пальца.
-                float rotationAmount = touchDelta.x * rotationSpeed * Time.deltaTime;
+                float rotationAmount = touchDelta.x * rotationSpeed * Time.deltaTime;//Изменяем поворот объекта по оси Y на основе движения пальца
                 transform.Rotate(Vector3.up, -rotationAmount);
-
-                // Обновляем начальную позицию касания.
-                touchStartPos = touch.position;
+       
+                touchStartPos = touch.position;//Обновляем начальную позицию касания
             }
         }
 
@@ -60,15 +57,12 @@ public class PlaneController : MonoBehaviour, IPlaneItemActions
     {
         mouseEndPos = Input.mousePosition;
 
-        // Вычисляем разницу в позиции мыши между начальной и текущей позицией.
-        Vector3 mouseDelta = mouseEndPos - mouseStartPos;
+        Vector3 mouseDelta = mouseEndPos - mouseStartPos;//Вычисляем разницу в позиции мыши между начальной и текущей позицией
 
-        // Изменяем угол поворота объекта по оси Y на основе разницы в позиции мыши.
-        float rotationAmount = mouseDelta.x * rotationSpeed * Time.deltaTime;
+        float rotationAmount = mouseDelta.x * rotationSpeed * Time.deltaTime;//Изменяем угол поворота объекта по оси Y на основе разницы в позиции мыши
         transform.Rotate(Vector3.up, -rotationAmount);
 
-        // Обновляем начальную позицию мыши для следующего кадра.
-        mouseStartPos = mouseEndPos;
+        mouseStartPos = mouseEndPos;//Обновляем начальную позицию мыши для следующего кадра
     }
     private void OnMouseUp()
     {

@@ -16,6 +16,7 @@ public class SmallPlane : MonoBehaviour
     private Quaternion down = Quaternion.Euler(270f, 90f, 0f);
     private Quaternion face = Quaternion.Euler(0f, 0f, 0f);
     private Quaternion left = Quaternion.Euler(0f, 90f, 0f);
+
     private Vector3 upV = new Vector3(0f, 10f, 0f);
     private Vector3 downV = new Vector3(0f, -10f, 0f);
     private Vector3 faceV = new Vector3(0f, 0f, -10f);
